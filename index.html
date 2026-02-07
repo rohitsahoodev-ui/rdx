@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>LunarHost | Premium Game & Bot Hosting</title>
+    <!-- Logo & Favicon -->
+    <link rel="icon" type="image/png" href="https://cdn.discordapp.com/attachments/1468493583408697498/1468535749807837275/file_00000000e13472088d960aaaf97e0a66.png?ex=6987abbe&is=69865a3e&hm=a0a3a4a9d4aeadd52ade03c0a18f6834a8fb4b30d1ce98668e5b71a697cc3de1&">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #050507;
+            color: #e2e8f0;
+            overflow-x: hidden;
+        }
+
+        .glass {
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .text-gradient {
+            background: linear-gradient(to right, #a78bfa, #22d3ee);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .btn-glow:hover {
+            box-shadow: 0 0 25px rgba(139, 92, 246, 0.5);
+            transform: translateY(-2px);
+        }
+
+        .plan-card:hover {
+            border-color: rgba(139, 92, 246, 0.5);
+            transform: translateY(-5px);
+            transition: all 0.3s ease;
+        }
+
+        .logo-glow {
+            filter: drop-shadow(0 0 8px rgba(139, 92, 246, 0.6));
+        }
+
+        .page-content {
+            display: none;
+            min-height: 80vh;
+        }
+
+        .page-content.active {
+            display: block;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(10px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Custom Scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #050507;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #2d2d35;
+            border-radius: 10px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #8b5cf6;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav class="fixed w-full z-50 glass top-0">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-20">
+                <a href="javascript:void(0)" onclick="navigateTo('home')" class="flex items-center gap-3 group">
+                    <img 
+                        src="https://cdn.discordapp.com/attachments/1468493583408697498/1468535749807837275/file_00000000e13472088d960aaaf97e0a66.png?ex=6987abbe&is=69865a3e&hm=a0a3a4a9d4aeadd52ade03c0a18f6834a8fb4b30d1ce98668e5b71a697cc3de1&" 
+                        alt="LunarHost Logo" 
+                        class="w-11 h-11 rounded-lg logo-glow object-cover"
+                    >
+                    <span class="text-2xl font-extrabold tracking-tighter text-white uppercase">LUNAR<span class="text-purple-500">HOST</span></span>
+                </a>
+                
+                <div class="hidden xl:block">
+                    <div class="flex items-baseline space-x-6">
+                        <button onclick="navigateTo('home')" class="nav-link hover:text-purple-400 transition font-medium text-purple-400">Home</button>
+                        <button onclick="navigateTo('intel')" class="nav-link hover:text-purple-400 transition font-medium">Intel Minecraft</button>
+                        <button onclick="navigateTo('amd')" class="nav-link hover:text-purple-400 transition font-medium">AMD Minecraft</button>
+                        <button onclick="navigateTo('bots')" class="nav-link hover:text-purple-400 transition font-medium">Bot Hosting</button>
+                        <button onclick="navigateTo('features')" class="nav-link hover:text-purple-400 transition font-medium">Features</button>
+                    </div>
+                </div>
+
+                <div class="flex items-center gap-3">
+                    <a href="https://panel.lunarhost.in" class="hidden sm:flex items-center gap-2 px-4 py-2 glass rounded-full text-xs font-semibold hover:bg-white/10 transition uppercase tracking-widest">
+                        <i data-lucide="layout-dashboard" class="w-3.5 h-3.5"></i> Panel
+                    </a>
+                    <a href="https://discord.gg/XKs9zDxWwX" class="flex items-center gap-2 px-5 py-2 bg-purple-600 rounded-full text-xs font-semibold btn-glow transition uppercase tracking-widest">
+                        <i data-lucide="message-circle" class="w-3.5 h-3.5"></i> Discord
+                    </a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page: HOME -->
+    <main id="home-page" class="page-content active pt-32">
+        <section class="relative pb-20 px-4 overflow-hidden">
+            <div class="absolute top-0 left-1/2 -translate-x-1/2 w-full h-full -z-10 opacity-20">
+                <div class="absolute top-20 left-1/4 w-96 h-96 bg-purple-600 rounded-full blur-[120px]"></div>
+            </div>
+
+            <div class="max-w-5xl mx-auto text-center" data-aos="fade-up">
+                <span class="px-4 py-1 rounded-full glass text-[10px] font-bold tracking-widest text-purple-400 uppercase mb-6 inline-block border border-purple-500/20">99% Uptime Guarantee</span>
+                <h1 class="text-5xl md:text-7xl font-black mb-6 leading-tight text-white">
+                    Premium Game & <br>
+                    <span class="text-gradient">Bot Hosting</span>
+                </h1>
+                <p class="text-lg text-slate-400 mb-10 max-w-2xl mx-auto">
+                    Experience industry-leading performance with <span class="text-white">LunarHost</span>. High Performance, Affordable, and Secured by Advanced DDoS Protection.
+                </p>
+                <div class="flex flex-col sm:flex-row items-center justify-center gap-4">
+                    <a href="https://discord.gg/XKs9zDxWwX" class="w-full sm:w-auto px-8 py-4 bg-purple-600 rounded-xl font-bold flex items-center justify-center gap-2 btn-glow text-white">
+                        Join Community
+                    </a>
+                    <button onclick="navigateTo('intel')" class="w-full sm:w-auto px-8 py-4 glass rounded-xl font-bold flex items-center justify-center gap-2 hover:bg-white/10 text-white">
+                        Explore Plans
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <!-- Home Features Preview -->
+        <section class="py-20 px-4">
+            <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-8 rounded-3xl" data-aos="fade-up">
+                    <i data-lucide="cpu" class="w-10 h-10 text-purple-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2 text-white">Intel Xeon Nodes</h3>
+                    <p class="text-slate-400 text-sm">Perfect for standard Minecraft servers and bots.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="100">
+                    <i data-lucide="zap" class="w-10 h-10 text-cyan-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2 text-white">AMD EPYC Power</h3>
+                    <p class="text-slate-400 text-sm">Extreme performance for heavy modpacks and large player counts.</p>
+                </div>
+                <div class="glass p-8 rounded-3xl" data-aos="fade-up" data-aos-delay="200">
+                    <i data-lucide="bot" class="w-10 h-10 text-indigo-500 mb-4"></i>
+                    <h3 class="text-xl font-bold mb-2 text-white">Bot Optimized</h3>
+                    <p class="text-slate-400 text-sm">Host your Discord bots with zero downtime and fast responses.</p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Page: INTEL PLANS -->
+    <section id="intel-page" class="page-content pt-32 pb-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-white">Minecraft — Intel Xeon Plans</h2>
+                <p class="text-slate-400 mt-2">Professional hosting at affordable rates.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <script>
+                    const intelPlans = [
+                        { name: 'Dirt', price: '30', ram: '2GB' },
+                        { name: 'Stone', price: '60', ram: '4GB' },
+                        { name: 'Iron', price: '120', ram: '8GB' },
+                        { name: 'Redstone', price: '270', ram: '16GB' },
+                        { name: 'Gold', price: '480', ram: '32GB' },
+                        { name: 'Diamond', price: '720', ram: '48GB' },
+                        { name: 'Netherite', price: '960', ram: '64GB' }
+                    ];
+                    intelPlans.forEach(plan => {
+                        document.write(`
+                            <div class="plan-card glass p-6 rounded-2xl flex flex-col">
+                                <h3 class="text-lg font-bold mb-1 text-white">${plan.name}</h3>
+                                <div class="text-2xl font-black text-purple-400 mb-4">₹${plan.price}/mo</div>
+                                <ul class="text-xs space-y-2 mb-6 text-slate-400">
+                                    <li>• ${plan.ram} DDR5 RAM</li>
+                                    <li>• Intel Xeon CPU</li>
+                                    <li>• NVMe SSD Storage</li>
+                                    <li>• DDoS Protected</li>
+                                </ul>
+                                <a href="https://discord.gg/XKs9zDxWwX" class="mt-auto py-2 bg-purple-600 rounded-lg text-center font-bold text-sm text-white">Order Now</a>
+                            </div>
+                        `);
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page: AMD PLANS -->
+    <section id="amd-page" class="page-content pt-32 pb-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-white">Minecraft — AMD EPYC Plans</h2>
+                <p class="text-slate-400 mt-2">Extreme power for high-demand servers.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <script>
+                    const amdPlans = [
+                        { name: 'Dirt', price: '60', ram: '2GB' },
+                        { name: 'Stone', price: '120', ram: '4GB' },
+                        { name: 'Iron', price: '240', ram: '8GB' },
+                        { name: 'Redstone', price: '480', ram: '16GB' },
+                        { name: 'Gold', price: '960', ram: '32GB' },
+                        { name: 'Diamond', price: '1440', ram: '48GB' },
+                        { name: 'Netherite', price: '1920', ram: '64GB' }
+                    ];
+                    amdPlans.forEach(plan => {
+                        document.write(`
+                            <div class="plan-card glass p-6 rounded-2xl flex flex-col border-cyan-500/10">
+                                <h3 class="text-lg font-bold mb-1 text-white">AMD ${plan.name}</h3>
+                                <div class="text-2xl font-black text-cyan-400 mb-4">₹${plan.price}/mo</div>
+                                <ul class="text-xs space-y-2 mb-6 text-slate-400">
+                                    <li>• ${plan.ram} DDR5 RAM</li>
+                                    <li>• AMD EPYC High-End</li>
+                                    <li>• Ultra NVMe Storage</li>
+                                    <li>• Priority Support</li>
+                                </ul>
+                                <a href="https://discord.gg/XKs9zDxWwX" class="mt-auto py-2 bg-cyan-600 rounded-lg text-center font-bold text-sm text-white">Order Now</a>
+                            </div>
+                        `);
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page: BOT HOSTING -->
+    <section id="bots-page" class="page-content pt-32 pb-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-white">Discord Bot Hosting</h2>
+                <p class="text-slate-400 mt-2">Fast, reliable hosting for your code.</p>
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+                <script>
+                    const botPlans = [
+                        { name: 'Starter', price: '29' },
+                        { name: 'Pro', price: '59' },
+                        { name: 'Giant', price: '89' },
+                        { name: 'Ultra', price: '119' }
+                    ];
+                    botPlans.forEach(plan => {
+                        document.write(`
+                            <div class="plan-card glass p-8 rounded-3xl text-center flex flex-col">
+                                <h3 class="text-xl font-bold mb-2 text-white">${plan.name}</h3>
+                                <div class="text-3xl font-black text-indigo-400 mb-6">₹${plan.price}/mo</div>
+                                <ul class="text-sm space-y-3 mb-8 text-slate-400">
+                                    <li>All Language Support</li>
+                                    <li>Daily Backups</li>
+                                    <li>99% Uptime</li>
+                                    <li>Instant Setup</li>
+                                </ul>
+                                <a href="https://discord.gg/XKs9zDxWwX" class="mt-auto py-3 glass border border-indigo-500/30 rounded-xl font-bold hover:bg-indigo-600 transition text-white">Order Bot Host</a>
+                            </div>
+                        `);
+                    });
+                </script>
+            </div>
+        </div>
+    </section>
+
+    <!-- Page: FEATURES -->
+    <section id="features-page" class="page-content pt-32 pb-20 px-4">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-16">
+                <h2 class="text-4xl font-black text-white">Why LunarHost?</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass p-10 rounded-[40px]">
+                    <h3 class="text-2xl font-bold mb-4 text-purple-400">High Performance</h3>
+                    <p class="text-slate-400">Latest CPU generations ensure your game runs at max TPS even with large player counts.</p>
+                </div>
+                <div class="glass p-10 rounded-[40px]">
+                    <h3 class="text-2xl font-bold mb-4 text-cyan-400">DDoS Protection</h3>
+                    <p class="text-slate-400">Enterprise-grade filtering keeps your server safe from attacks and lag spikes.</p>
+                </div>
+                <div class="glass p-10 rounded-[40px]">
+                    <h3 class="text-2xl font-bold mb-4 text-green-400">99.9% Uptime</h3>
+                    <p class="text-slate-400">Reliable infrastructure powered by Asheocloud means your project is always online.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Login Section -->
+    <section id="login-section" class="py-20 px-4">
+        <div class="max-w-4xl mx-auto glass p-10 rounded-[40px] text-center relative overflow-hidden">
+            <div class="absolute inset-0 bg-purple-600/5 -z-10"></div>
+            <div class="w-16 h-16 bg-purple-600 rounded-2xl flex items-center justify-center mx-auto mb-6 shadow-xl shadow-purple-600/20">
+                <i data-lucide="lock" class="w-8 h-8 text-white"></i>
+            </div>
+            <h2 class="text-3xl font-black mb-4 text-white">Client Login</h2>
+            <p class="text-slate-400 mb-8">Ready to manage your servers? Jump straight into the dashboard.</p>
+            <a href="https://panel.lunarhost.in" class="inline-flex items-center gap-3 px-10 py-4 bg-purple-600 rounded-2xl font-black text-lg btn-glow transition uppercase tracking-widest text-white">
+                Login to Panel <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="pt-20 pb-10 px-4 border-t border-white/5 bg-[#030305]">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12 mb-12">
+                <div>
+                    <div class="flex items-center gap-3 mb-6">
+                        <img src="https://cdn.discordapp.com/attachments/1468493583408697498/1468535749807837275/file_00000000e13472088d960aaaf97e0a66.png?ex=6987abbe&is=69865a3e&hm=a0a3a4a9d4aeadd52ade03c0a18f6834a8fb4b30d1ce98668e5b71a697cc3de1&" class="w-8 h-8 rounded-lg" alt="LunarHost">
+                        <span class="text-xl font-bold text-white tracking-tighter uppercase">LunarHost</span>
+                    </div>
+                    <p class="text-slate-500 text-sm">Premium hosting solutions for the modern gamer and developer.</p>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Navigation</h4>
+                    <ul class="text-slate-500 text-sm space-y-3">
+                        <li><button onclick="navigateTo('home')" class="hover:text-purple-400 transition">Home</button></li>
+                        <li><button onclick="navigateTo('intel')" class="hover:text-purple-400 transition">Intel Plans</button></li>
+                        <li><button onclick="navigateTo('amd')" class="hover:text-purple-400 transition">AMD Plans</button></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-white font-bold mb-6">Support</h4>
+                    <ul class="text-slate-500 text-sm space-y-3">
+                        <li><a href="https://discord.gg/XKs9zDxWwX" class="hover:text-purple-400 transition">Discord Community</a></li>
+                        <li><a href="https://panel.lunarhost.in" class="hover:text-purple-400 transition">Client Panel</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div class="pt-8 border-t border-white/5 text-center text-slate-600 text-[10px] uppercase tracking-[0.2em]">
+                &copy; <span id="year"></span> LunarHost • Powered by Asheocloud
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation Logic
+        function navigateTo(pageId) {
+            // Hide all pages
+            document.querySelectorAll('.page-content').forEach(p => p.classList.remove('active'));
+            // Show target page
+            const target = document.getElementById(pageId + '-page');
+            if(target) target.classList.add('active');
+            
+            // Update Navbar Active State
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.remove('text-purple-400');
+            });
+            // We find the button that was clicked via the event object
+            if (event && event.target && event.target.classList.contains('nav-link')) {
+                event.target.classList.add('text-purple-400');
+            }
+
+            // Scroll to top
+            window.scrollTo(0, 0);
+        }
+
+        // Initialize AOS
+        AOS.init({ duration: 800, once: true });
+
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Set year
+        document.getElementById('year').textContent = new Date().getFullYear();
+
+        // Navbar interaction
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 50) {
+                nav.classList.add('bg-black/80');
+                nav.classList.add('shadow-2xl');
+            } else {
+                nav.classList.remove('bg-black/80');
+                nav.classList.remove('shadow-2xl');
+            }
+        });
+    </script>
+</body>
+</html>
